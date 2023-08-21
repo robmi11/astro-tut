@@ -1,0 +1,21 @@
+---
+import Showcase from "../components/Showcase.astro";
+import Layout from "../layouts/Layout.astro";
+import Features from "../components/Features.astro";
+import PageContent from "../components/PageContent.astro";
+
+const pageTitle = "Welcome To The Astro Crash Course!";
+const pageSubtitle =
+  "Build super fast HTML-first websites using your favorite JavaScript frameworks";
+const showExtra = true;
+---
+
+<Layout>
+  <Showcase
+    pageTitle={pageTitle}
+    pageSubtitle={pageSubtitle}
+    showExtra={showExtra}
+  />
+  <Features />
+  <PageContent />
+</Layout>

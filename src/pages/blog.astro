@@ -1,0 +1,43 @@
+---
+import { getCollection } from "astro:content";
+
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import Showcase from "../components/Showcase.astro";
+
+const posts = await Astro.glob("../content/posts/*.md");
+
+const pageTitle = "Astro Blog";
+const pageSubtitle = "A simple blog built with Astro";
+const showExtra = false;
+---
+
+<Layout title="Astro Blog">
+  <Showcase
+    pageTitle={pageTitle}
+    pageSubtitle={pageSubtitle}
+    showExtra={showExtra}
+  />
+
+  <section class="page-content">
+    <div class="container">
+      {
+        posts.map((post) => (
+          <Card>
+            <h3>{post.frontmatter.title}</h3>
+            <div>
+              Written by <strong>{post.frontmatter.author}</strong> on{" "}
+              {new Date(post.frontmatter.date).toLocaleDateString()}
+            </div>
+            <p>{post.frontmatter.excerpt}</p>
+            <a
+              href={`/${post.frontmatter.slug}`}
+              class="btn">
+              Read More
+            </a>
+          </Card>
+        ))
+      }
+    </div>
+  </section>
+</Layout>
